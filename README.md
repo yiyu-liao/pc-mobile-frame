@@ -1,25 +1,27 @@
-# 基于webpack开发多平台web端项目
+# 基于webpack整合pc/mobile端web项目
 
 ## 前言
-> 最近接触到一个官网项目，要求适配pc/移动端，因为后台数据接口都是一套的，为方便前端开发，减轻工作量，因此基于webpack配置了一套multiple phatform开发环境
+> 最近接触到一个官网项目，要求适配pc/移动端，因为后台数据接口都是一套的，没必要搭建两套工程项目，减轻工作量，因此在原来的基础上，基于webpack配置了一套multiple phatform开发环境
 
 ## 思路
 
 一、拆分以下三个不同入口，独立打包：
-* 主入口 => index.html
-* pc浏览器入口 => p_index.html
-* mobile浏览器入口 => m_index.html
+
+* 主入口 => `/platform/index/index.html`
+* pc浏览器入口 => `/platform/pc/p_index.html`
+* mobile浏览器入口 => `/platform/mobile/m_index.html`
 
 二、.逻辑实现
-> 浏览器首先加载index.html，index.html可以理解为一个代理入口（中间商），在此判断当前浏览器设备属于pc端，还是mobile端，然后重定向对应入口html
+
+    webpack打包后，浏览器加载index.html，index.html可以理解为一个代理入口（中间商），在此判断当前浏览器设备属于pc端，还是mobile端，然后重定向对应程序入口。
 
 
 三、webpack配置
 
-> 为了统一管理入口文件，封装了工具类函数entris方法，利用node.js相关方法自动读取
-入口文件，入口文件路径规则./src/platform/*/*.js
+    为了统一管理入口文件，封装了工具类函数entris方法，利用node.js相关方法自动读取
+    入口文件，入口文件路径规则 `./src/platform/*/*.js`
 
-4.路由配置
+四、路由配置
 
-> 同一项目下，配置两个不同设备平台的路由表
+    同一项目下，配置两个不同设备平台的路由表
 
